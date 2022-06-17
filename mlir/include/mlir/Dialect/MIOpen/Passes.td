@@ -30,13 +30,13 @@ def MIOpenAsyncLaunchPass : Pass<"miopen-async-launch", "FuncOp"> {
 def MIOpenOpsStep1Pass : Pass<"miopen-lowering", "ModuleOp"> {
   let summary = "expand convolution into coordinate transformations and gridwise gemm";
   let constructor = "mlir::miopen::createLowerMIOpenOpsStep1Pass()";
-  let dependentDialects = ["miopen::MIOpenDialect", "memref::MemRefDialect", "AffineDialect", "scf::SCFDialect"];
+  let dependentDialects = ["miopen::MIOpenDialect", "arith::ArithmeticDialect", "memref::MemRefDialect", "AffineDialect", "scf::SCFDialect"];
 }
 
 def MIOpenOpsAffixTuningParametersPass : Pass<"miopen-affix-params", "::mlir::FuncOp"> {
   let summary = "populate tuning parameters for miopen.gridwise_gemm ops";
   let constructor = "mlir::miopen::createAffixTuningParametersPass()";
-  let dependentDialects = ["miopen::MIOpenDialect"];
+  let dependentDialects = ["miopen::MIOpenDialect", "arith::ArithmeticDialect"];
 }
 
 def MIOpenOpsStep2Pass : Pass<"miopen-lowering-step2", "ModuleOp"> {
