@@ -170,6 +170,7 @@ add_custom_target(check-mlir-build-only
 add_lit_testsuite(check-mlir "Running the MLIR regression tests"
   ${CMAKE_CURRENT_BINARY_DIR}
   DEPENDS ${MLIR_TEST_DEPENDS}
+  ARGS "--time-tests"
   )
 set_target_properties(check-mlir PROPERTIES FOLDER "Tests")
 
